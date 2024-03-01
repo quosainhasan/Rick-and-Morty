@@ -16,14 +16,16 @@
         </div>
         <div class="row">
             <% characters.forEach(character => { %>
-                <div class="col-12 col">
-                    <div class="card" style="width: 18rem;">
+                <div class="col">
+                    <div class="card my-2" style="width: 18rem;">
                         <img src="<%= character.image %>" class="card-img-top" alt="<%= character.name %>">
                         <div class="card-body">
                             <h5 class="card-title"><%= character.name %></h5>
                             <p class="card-text">Status: <%= character.status %></p>
                             <p class="card-text">Species: <%= character.species %></p>
-                            <p class="card-text"></p>
+                            <p class="card-text">Gender: <%= character.gender %></p>
+                            <hr>
+                            <p class="card-text">Origin: <%= character.origin.name %></p>
                         </div>
                     </div>
                 </div>
