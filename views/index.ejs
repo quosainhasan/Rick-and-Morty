@@ -26,11 +26,31 @@
                             <p class="card-text">Gender: <%= character.gender %></p>
                             <hr>
                             <p class="card-text">Origin: <%= character.origin.name %></p>
+                            <p class="card-text">Last known location: <%= character.location.name %></p>
                         </div>
                     </div>
                 </div>
             <% }) %>
         </div>
+    </div>
+    <div class="container my-5 text-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <% let start = (currentPage - 1) * 10; %>
+                <% let end = start + 10; %>
+                <% if (currentPage > 1) { %>
+                    <li class="page-item"><a class="page-link" href="/?page=<%= currentPage - 1 %>">Previous</a></li>
+                <% } %>
+                <% for(let i = start; i < end && i < pages; i++) { %>
+                    <li class="page-item"><a class="page-link" href="/?page=<%= i + 1 %>"><%= i + 1 %></a></li>
+                <% } %>
+                <% if (end < pages) { %>
+                    <li class="page-item"><a class="page-link" href="/?page=<%= currentPage + 1 %>">Next</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

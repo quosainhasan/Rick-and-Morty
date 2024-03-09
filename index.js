@@ -2,11 +2,18 @@ import express from 'express';
 import axios from 'axios';
 const app = express();
 const port = process.env.PORT || 3000;
+const baseUrl = 'https://rickandmortyapi.com/api';
+const people = '/character';
+const locations = '/location';
+const episodes = '/episode';
 
 app.get('/', async(req, res) => {
     try{
-        const characters = await axios.get('https://rickandmortyapi.com/api/character');
-        res.render('index.ejs', { characters: characters.data.results });
+        const page = req.query.page || 1;
+        const characters = await axios.get(`${baseUrl}${people}?page=${page}`);
+        console.log(characters.data.info);
+        const pages = characters.data.info.pages;
+        res.render('index.ejs', { characters: characters.data.results, pages: pages, currentPage: page});
     } catch (error) {
         console.error(error);
     }
