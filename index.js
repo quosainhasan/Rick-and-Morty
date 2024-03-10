@@ -11,7 +11,6 @@ app.get('/', async(req, res) => {
     try{
         const page = req.query.page || 1;
         const characters = await axios.get(`${baseUrl}${people}?page=${page}`);
-        console.log(characters.data.info);
         const pages =  characters.data.info.pages;
         res.render('index.ejs', { characters: characters.data.results, pages: pages, page: page });
     } catch (error) {
